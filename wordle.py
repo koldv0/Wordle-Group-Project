@@ -4,11 +4,12 @@ By: Adam, Ruben, Alex, BobTheBuilder
 Citations: 
     https://gist.github.com/minism/1590432  - This was used for COLORS 
     https://github.com/Kinkelin/WordleCompetition/blob/main/data/official/shuffled_real_wordles.txt -  This was used for the imported TXT file
+    --
 """
 
 import random
 
-#DISCLAIMER BY YOURS TRULY: If the file and txt file are within a folder, ensure that you take it outside the folder and into the Explorer by dragging it down into where Python is actually running.
+#DISCLAIMER BY YOURS TRULY: If the file and txt file are within a folder, ensure that you take it outside the folder and into the Explorer by dragging it down into where Python is actually running if your using VsCode.
     # TLDR: Drag it outside the folder!
 
 # COLORS
