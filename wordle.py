@@ -10,20 +10,25 @@ import random
 
 #DISCLAIMER BY YOURS TRULY: If the file and txt file are within a folder, ensure that you take it outside the folder and into the Explorer by dragging it down into where Python is actually running if your using VsCode.
     # TLDR: Drag it outside the folder!
-#--
+"""
 
 # C-Level Work (This is being sketched):
-# Class called (...) for that loops through each individual letter of a word (similar to looping through each card in a deck of cards). 
-# The previous class will into the next class with what we do with each individual letter by assigning it a color, and depending on the color, it'll be a right/wrong. 
-# Class called  (MethodCalledGuess(?)) (Note: what comes after this little note can is in testing) each color will loop through each letter of the guessed word, and depending if it matches with the letter of the guessed word, then it'll assign that color to it.
+# Guess (class)  →  feeds into  →  play_game()
 
+# Class called (Guess):
+    # Properties: (text), The full word typed by the player
+    # Properties: (secret), The secret target word. 
+    # Methods: (validate_guess()), Replaces validate_guess function.
+    # Methods: (color_guess()), Replaces color_guess function. 
+    # Objects: Created inside play_game(), one per attempt
+ 
 # B-Level Work:
 # LOOK into PyGame and doing the Wordle on PyGame (similar to the turtle drawing lines activity earlier in the semester using Turtle).
 
-#A-Level Work:
+# A-Level Work:
 # Using this Repo and FlowChart
 
-#-- 
+"""
 # COLORS
 GREEN = "\033[42m" # The letter's in the right placement
 YELLOW = "\033[43m" # The letter's in the word, not the right placement
@@ -32,7 +37,7 @@ RESET = "\033[0m" # This reset's the termianal background & text color back to c
 
 
 
-def load_wordlist(filepath: str = "real_wordles.txt") -> list[str]: 
+def load_wordlist(filepath: str = "real_wordles.txt") -> list[str]: #STANDALONE
     """
     Loads words from a text file.
 
@@ -48,7 +53,7 @@ def load_wordlist(filepath: str = "real_wordles.txt") -> list[str]:
         return [line.strip().lower() for line in f if line.strip()] # This returns each line/word  within the txt file as a lowercase string
 
 
-def validate_guess(guess: str, word_length: int = 5) -> bool: #Transform this into a 'Guess' class
+def validate_guess(guess: str, word_length: int = 5) -> bool: #TRANSFORM
     """
     This function validates wheter the guess is wrong or right
 
@@ -65,7 +70,7 @@ def validate_guess(guess: str, word_length: int = 5) -> bool: #Transform this in
     return True #Returns True if the length of the guess was correct. 
 
 
-def color_guess(guess: str, secert: str) -> str: #Transform this into a 'Guess' class
+def color_guess(guess: str, secert: str) -> str: #TRANSFORM
     """
     Builds a color-coded string by comparing each letter of the guess to the secret.
     Green  = correct letter, correct position.
@@ -97,7 +102,7 @@ def color_guess(guess: str, secert: str) -> str: #Transform this into a 'Guess' 
     return output #Prints out the colored response
 
 
-def get_guess(word_length: int = 5) -> str: #Transform this into a 'Guess' class
+def get_guess(word_length: int = 5) -> str: #STANDALONE
     """
     Repeatedly prompts the player for input until a valid guess is entered.
 
@@ -117,7 +122,7 @@ def get_guess(word_length: int = 5) -> str: #Transform this into a 'Guess' class
             return guess
 
 
-def play_game(wordlist: list[str], max_attempts: int = 5, word_length: int = 5) -> None:
+def play_game(wordlist: list[str], max_attempts: int = 5, word_length: int = 5) -> None: #STANDALONE
     """
     This function runs the game from start to finish
 
