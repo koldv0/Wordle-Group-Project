@@ -4,14 +4,26 @@ By: Adam, Ruben, Alex, BobTheBuilder
 Citations: 
     https://gist.github.com/minism/1590432  - This was used for COLORS 
     https://github.com/Kinkelin/WordleCompetition/blob/main/data/official/shuffled_real_wordles.txt -  This was used for the imported TXT file
-    --
 """
 
 import random
 
 #DISCLAIMER BY YOURS TRULY: If the file and txt file are within a folder, ensure that you take it outside the folder and into the Explorer by dragging it down into where Python is actually running if your using VsCode.
     # TLDR: Drag it outside the folder!
+#--
 
+# C-Level Work (This is being sketched):
+# Class called (...) for that loops through each individual letter of a word (similar to looping through each card in a deck of cards). 
+# The previous class will into the next class with what we do with each individual letter by assigning it a color, and depending on the color, it'll be a right/wrong. 
+# Class called  (MethodCalledGuess(?)) (Note: what comes after this little note can is in testing) each color will loop through each letter of the guessed word, and depending if it matches with the letter of the guessed word, then it'll assign that color to it.
+
+# B-Level Work:
+# LOOK into PyGame and doing the Wordle on PyGame (similar to the turtle drawing lines activity earlier in the semester using Turtle).
+
+#A-Level Work:
+# Using this Repo and FlowChart
+
+#-- 
 # COLORS
 GREEN = "\033[42m" # The letter's in the right placement
 YELLOW = "\033[43m" # The letter's in the word, not the right placement
@@ -36,7 +48,7 @@ def load_wordlist(filepath: str = "real_wordles.txt") -> list[str]:
         return [line.strip().lower() for line in f if line.strip()] # This returns each line/word  within the txt file as a lowercase string
 
 
-def validate_guess(guess: str, word_length: int = 5) -> bool:
+def validate_guess(guess: str, word_length: int = 5) -> bool: #Transform this into a 'Guess' class
     """
     This function validates wheter the guess is wrong or right
 
@@ -53,7 +65,7 @@ def validate_guess(guess: str, word_length: int = 5) -> bool:
     return True #Returns True if the length of the guess was correct. 
 
 
-def color_guess(guess: str, secert: str) -> str:
+def color_guess(guess: str, secert: str) -> str: #Transform this into a 'Guess' class
     """
     Builds a color-coded string by comparing each letter of the guess to the secret.
     Green  = correct letter, correct position.
@@ -85,7 +97,7 @@ def color_guess(guess: str, secert: str) -> str:
     return output #Prints out the colored response
 
 
-def get_guess(word_length: int = 5) -> str: 
+def get_guess(word_length: int = 5) -> str: #Transform this into a 'Guess' class
     """
     Repeatedly prompts the player for input until a valid guess is entered.
 
