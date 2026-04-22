@@ -18,8 +18,8 @@ import random
 # Class called (Guess):
     # Properties: (text), The full word typed by the player
     # Properties: (secret), The secret target word. 
-    # Methods: (validate_guess()), Replaces validate_guess function.
-    # Methods: (color_guess()), Replaces color_guess function. 
+    # Methods: (validate_guess()), Replaces validate_guess function (This function validates wheter the guess is wrong or right).
+    # Methods: (color_guess()), Replaces color_guess function (Builds a color-coded string by comparing each letter of the guess to the secret). 
     # Objects: Created inside play_game(), one per attempt
  
 # B-Level Work:
