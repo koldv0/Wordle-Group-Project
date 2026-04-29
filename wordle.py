@@ -24,6 +24,7 @@ import random
  
 # B-Level Work:
 # LOOK into PyGame and doing the Wordle on PyGame (similar to the turtle drawing lines activity earlier in the semester using Turtle).
+    # The words on the screen shouldn't be clickable via the mouse (as shown in the NYTimes Wordle) as people rarely use them, and instead use the letter bank as a letter tracker. 
 
 # A-Level Work:
 # Using this Repo and FlowChart
