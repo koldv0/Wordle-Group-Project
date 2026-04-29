@@ -15,7 +15,7 @@ import random
 # C-Level Work (This is being sketched):
 # Guess (class)  →  feeds into  →  play_game()
 
-# Class called (Guess):
+# Class called (Letter):
     # Properties: (text), The full word typed by the player
     # Properties: (secret), The secret target word. 
     # Methods: (validate_guess()), Replaces validate_guess function (This function validates wheter the guess is wrong or right).
