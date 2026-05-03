@@ -154,7 +154,7 @@ def play_game(wordlist: list[str], max_attempts: int = 5, word_length: int = 5) 
     """
 
     secret:str = random.choice(wordlist)
-    attempts:str = max_attempts
+    attempts:int = max_attempts
 
     print("LET'S PLAY WORDLE!")
     print(f"Your purpose is to guess {word_length}-letter word. You have up to 5 tries before you lose. \n")
