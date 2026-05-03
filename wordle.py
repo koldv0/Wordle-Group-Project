@@ -180,7 +180,7 @@ def get_guess(word_length: int = 5) -> str: #STANDALONE
             return guess
 
 
-def play_game(wordlist: list[str], max_attempts: int = 5, word_length: int = 5) -> None: #STANDALONE
+def play_game(wordlist: list[str], max_attempts: int = 5, word_length: int = 5) -> None: 
     """
     This function runs the game from start to finish
 
@@ -217,7 +217,8 @@ def play_game(wordlist: list[str], max_attempts: int = 5, word_length: int = 5) 
 
     print("Game over! Your word was:", secret)
 
-# BELOW IS PYGAME STUFF
+
+# ~ BELOW IS PYGAME STUFF ~ 
 
 
 def get_tile_color(char: str, i: int, guess: str, secret: str) -> tuple:
@@ -256,9 +257,41 @@ def draw_board(screen: Surface, guesses: list, secret: str, current_guess: str, 
     Returns:
         None
     """
-    pass
+    tile_size: int = 62  # Size of each tile in pixels
+    tile_gap: int = 8    # Gap between tiles
+    start_x: int = 150   # Starting x position of the grid
+    start_y: int = 50    # Starting y position of the grid
+
+    for r in range(5): # Loops through each row (5 attempts)
+        for c in range(5): # Loops through each column (5 letters)
+            x: int = start_x + c * (tile_size + tile_gap) # Calculates x position of tile
+            y: int = start_y + r * (tile_size + tile_gap) # Calculates y position of tile
+
+            if r < len(guesses): # This row has a completed guess
+                char: str = guesses[r][c]
+                color: tuple = get_tile_color(char, c, guesses[r], secret) # Gets the color for this tile
+                draw_rect(screen, color, (x, y, tile_size, tile_size))      # Draws colored tile
+                letter_surface = font.render(char.upper(), True, PG_WHITE)  # Renders the letter in white
+                letter_rect = letter_surface.get_rect(center=(x + tile_size // 2, y + tile_size // 2))
+                screen.blit(letter_surface, letter_rect) # Draws the letter onto the tile
+
+            elif r == row: # This is the current row being typed
+                for col in range(5):
+                    cx: int = start_x + col * (tile_size + tile_gap)
+                    draw_rect(screen, PG_LIGHT_GRAY, (cx, y, tile_size, tile_size), 2) # Draws empty tile border
+                    if col < len(current_guess): # If a letter has been typed in this position
+                        char = current_guess[col]
+                        letter_surface = font.render(char.upper(), True, PG_BLACK)     # Renders the letter in black
+                        letter_rect = letter_surface.get_rect(center=(cx + tile_size // 2, y + tile_size // 2))
+                        screen.blit(letter_surface, letter_rect) # Draws the letter onto the tile
+                break
+
+            else: # Empty future rows
+                for col in range(5):
+                    cx: int = start_x + col * (tile_size + tile_gap)
+                    draw_rect(screen, PG_LIGHT_GRAY, (cx, y, tile_size, tile_size), 2) # Draws an empty tile border
     
-def play_game_pygame(wordlist: list[str], max_attempts: int = 5, word_length: int = 5) -> None: # STANDALONE
+def play_game_pygame(wordlist: list[str], max_attempts: int = 5, word_length: int = 5) -> None: 
     """
     Tis runs the Wordle game in a PyGame window.
 
