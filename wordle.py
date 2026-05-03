@@ -36,7 +36,24 @@ GRAY = "\033[47m" # The letter is not in the word
 RESET = "\033[0m" # This reset's the termianal background & text color back to colorless/default
 
 
+class Letter:
+    def __init__(self, char: str, color: str):
+        """
+        Represents a single letter in a guess.
 
+        Properties:
+            char  (str): The single character, e.g. "a"
+            color (str): The assigned color (GREEN, YELLOW, or GRAY)
+        """
+        self.char = char
+        self.color = color
+
+    def render(self) -> str:
+        """
+        Returns the color-coded string for this letter.
+        """
+        return self.color + self.char + RESET
+        
 def load_wordlist(filepath: str = "real_wordles.txt") -> list[str]: #STANDALONE
     """
     Loads words from a text file.
