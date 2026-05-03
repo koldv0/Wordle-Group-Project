@@ -7,9 +7,14 @@ Citations:
 """
 
 import random
-
-#DISCLAIMER BY YOURS TRULY: If the file and txt file are within a folder, ensure that you take it outside the folder and into the Explorer by dragging it down into where Python is actually running if your using VsCode.
-    # TLDR: Drag it outside the folder!
+#DISCLAIMER BY YOURS TRULY: 
+    # If the file and txt file are within a folder, ensure that you take it outside the folder and into the Explorer by dragging it down into where Python is actually running if your using VsCode.
+        # TLDR: Drag it outside the folder!
+    #If your trying to import pygame, ensure you have 3.12 installed because 3.14 was giving me an error. This is what I did step-by-step to solve the issue:
+        # I) py -3.12 -m pip install pygame
+        # II) pip install pygame 
+        # III py -3.12 -c "import pygame; print(pygame.version.ver)" 
+    # The steps I've mentioned should be ran in the terminal, and if III says 2.6.1,  then pygame should be working. 
 """
 
 # C-Level Work:
@@ -24,6 +29,27 @@ import random
 # B-Level Work:
 # LOOK into PyGame and doing the Wordle on PyGame (similar to the turtle drawing lines activity earlier in the semester using Turtle).
     # The words on the screen shouldn't be clickable via the mouse (as shown in the NYTimes Wordle) as people rarely use them, and instead use the letter bank as a letter tracker. 
+
+# Outline will look something like:
+    1. Docstring header
+    2. Imports (random + pygame imports)
+    3. Disclaimer + C/B/A level comments
+    4. Terminal colors (GREEN, YELLOW, GRAY, RESET)
+    5. PyGame colors (PG_GREEN, PG_YELLOW, etc.)
+    6. Letter class
+    7. load_wordlist()
+    8. validate_guess()
+    9. color_guess()
+    10. get_guess()
+    11. play_game()
+    12. get_tile_color()    ← new
+    13. draw_board()        ← new
+    14. draw_letter_bank()  ← new
+    15. play_game_pygame()  ← new
+    16. if __name__ == "__main__":
+            wordlist = load_wordlist("real_wordles.txt")
+            play_game_pygame(wordlist)
+# "New" Should be the stuff that's being added to the PyGame. 
 
 # A-Level Work:
 # Using this Repo and FlowChart
