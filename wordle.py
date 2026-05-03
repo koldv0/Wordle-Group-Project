@@ -87,7 +87,7 @@ def validate_guess(guess: str, word_length: int = 5) -> bool:
     return True #Returns True if the length of the guess was correct. 
 
 
-def color_guess(guess: str, secert: str) -> str: 
+def color_guess(guess: str, secret: str) -> str: 
     """
     Builds a color-coded string by comparing each letter of the guess to the secret.
     Green  = correct letter, correct position.
@@ -110,9 +110,9 @@ def color_guess(guess: str, secert: str) -> str:
     """
     output = ""
     for i in range(len(guess)):  #This loops through each of the 5 letter positions
-        if guess[i] == secert[i]:  #Checks if the guessed letter matches the secrets letter
+        if guess[i] == secret[i]:  #Checks if the guessed letter matches the secrets letter
             letter = Letter(guess[i], GREEN) # This creates a Letter object with GREEN
-        elif guess[i] in secert: #Checks if the guessed letter exists in the secret word
+        elif guess[i] in secret: #Checks if the guessed letter exists in the secret word
             letter = Letter(guess[i], YELLOW) # This creates a Letter object with YELLOW
         else: 
             letter = Letter(guess[i], GRAY)    # If the letter is not within the word, it'll creat a Letter object with GRAY
