@@ -225,7 +225,7 @@ def get_tile_color(char: str, i: int, guess: str, secret: str) -> tuple:
     This returns the PyGame color for a single letter tile using the Letter class.
 
     Parameters:
-        char   (str): The single character being evaluated
+        char   (str): The single character being looked at
         i      (int): The position of the character in the guess
         guess  (str): The full guessed word
         secret (str): The secret target word
@@ -233,7 +233,13 @@ def get_tile_color(char: str, i: int, guess: str, secret: str) -> tuple:
     Returns:
         tuple: A PyGame RGB color tuple
     """
-    pass
+    if char == secret[i]: # Checks if the letter is in the correct position
+        letter = Letter(char, PG_GREEN)   # Creates a Letter object with PG_GREEN
+    elif char in secret:  # Checks if the letter is in the word but wrong position
+        letter = Letter(char, PG_YELLOW)  # Creates a Letter object with PG_YELLOW
+    else:
+        letter = Letter(char, PG_GRAY)    # Creates a Letter object with PG_GRAY
+    return letter.color # Returns the color property from the Letter object
 
 def draw_board(screen: Surface, guesses: list, secret: str, current_guess: str, row: int, font) -> None:
     """
@@ -281,3 +287,5 @@ if __name__ == "__main__":
     clock: Clock = Clock() # Controls the frame rate
 
     wordlist = load_wordlist("real_wordles.txt")
+    play_game_pygame(wordlist)
+
