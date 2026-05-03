@@ -110,13 +110,14 @@ def color_guess(guess: str, secert: str) -> str:
     """
     output = ""
     for i in range(len(guess)):  #This loops through each of the 5 letter positions
-        if guess[i] == secert[i]: #Checks if the guessed letter matches the secrets letter
-            output += GREEN + guess[i] + RESET  # If the position of the letter is matched with the secret word, then it's green
+        if guess[i] == secert[i]:  #Checks if the guessed letter matches the secrets letter
+            letter = Letter(guess[i], GREEN) # This creates a Letter object with GREEN
         elif guess[i] in secert: #Checks if the guessed letter exists in the secret word
-            output += YELLOW + guess[i] + RESET  #If the guessed letter does exist in the secret word, the letter is yellow
+            letter = Letter(guess[i], YELLOW) # This creates a Letter object with YELLOW
         else: 
-            output += letter.render() # Calls Letter - render method. 
-    return output #Prints out the colored response
+            letter = Letter(guess[i], GRAY)    # If the letter is not within the word, it'll creat a Letter object with GRAY
+        output += letter.render() # Calls Letter's method, render() 
+    return output #Returns the colored response
 
 
 def get_guess(word_length: int = 5) -> str: #STANDALONE
