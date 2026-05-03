@@ -54,7 +54,7 @@ class Letter:
         """
         return self.color + self.char + RESET
         
-def load_wordlist(filepath: str = "real_wordles.txt") -> list[str]: #STANDALONE
+def load_wordlist(filepath: str = "real_wordles.txt") -> list[str]: 
     """
     Loads words from a text file.
 
@@ -65,12 +65,12 @@ def load_wordlist(filepath: str = "real_wordles.txt") -> list[str]: #STANDALONE
         list[str]:  A list of stripped/lowercased words found in the wordlist 
     """
   
-    with open(filepath, "r") as f: # This opens the file in read mode
+    with open(filepath, "r") as f: # This opens the file in read mode.
 
         return [line.strip().lower() for line in f if line.strip()] # This returns each line/word  within the txt file as a lowercase string
 
 
-def validate_guess(guess: str, word_length: int = 5) -> bool: #TRANSFORM
+def validate_guess(guess: str, word_length: int = 5) -> bool: 
     """
     This function validates wheter the guess is wrong or right
 
@@ -87,7 +87,7 @@ def validate_guess(guess: str, word_length: int = 5) -> bool: #TRANSFORM
     return True #Returns True if the length of the guess was correct. 
 
 
-def color_guess(guess: str, secert: str) -> str: #TRANSFORM
+def color_guess(guess: str, secert: str) -> str: 
     """
     Builds a color-coded string by comparing each letter of the guess to the secret.
     Green  = correct letter, correct position.
@@ -115,7 +115,7 @@ def color_guess(guess: str, secert: str) -> str: #TRANSFORM
         elif guess[i] in secert: #Checks if the guessed letter exists in the secret word
             output += YELLOW + guess[i] + RESET  #If the guessed letter does exist in the secret word, the letter is yellow
         else: 
-            output += GRAY + guess[i] + RESET # Otherwise, hightlight the word as GREY(or white) if the letter doesn't isn't in the secret word
+            output += letter.render() # Calls Letter - render method. 
     return output #Prints out the colored response
 
 
