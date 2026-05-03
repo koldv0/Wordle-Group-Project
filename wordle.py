@@ -12,16 +12,15 @@ import random
     # TLDR: Drag it outside the folder!
 """
 
-# C-Level Work (This is being sketched):
-# Guess (class)  →  feeds into  →  play_game()
+# C-Level Work:
+# Letter  →  feeds into  →  color_guess()  →  feeds into  →  play_game()
 
 # Class called (Letter):
-    # Properties: (text), The full word typed by the player
-    # Properties: (secret), The secret target word. 
-    # Methods: (validate_guess()), Replaces validate_guess function (This function validates wheter the guess is wrong or right).
-    # Methods: (color_guess()), Replaces color_guess function (Builds a color-coded string by comparing each letter of the guess to the secret). 
-    # Objects: Created inside play_game(), one per attempt
- 
+    # Properties: (char), The single letter of the word, e.g. "a"
+    # Properties: (color), The assigned color (GREEN, YELLOW, or GRAY)
+    # Methods: (render()), This returns the color-coded string for this single letter
+    # Objects: This is created inside color_guess(), one per character position in the guess
+    
 # B-Level Work:
 # LOOK into PyGame and doing the Wordle on PyGame (similar to the turtle drawing lines activity earlier in the semester using Turtle).
     # The words on the screen shouldn't be clickable via the mouse (as shown in the NYTimes Wordle) as people rarely use them, and instead use the letter bank as a letter tracker. 
