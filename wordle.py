@@ -7,6 +7,12 @@ Citations:
 """
 
 import random
+from pygame import init, quit, Surface, QUIT, KEYDOWN, K_RETURN, K_BACKSPACE
+from pygame.display import set_mode, set_caption, flip
+from pygame.event import get
+from pygame.time import Clock
+from pygame.font import SysFont
+from pygame.draw import rect as draw_rect
 #DISCLAIMER BY YOURS TRULY: 
     # If the file and txt file are within a folder, ensure that you take it outside the folder and into the Explorer by dragging it down into where Python is actually running if your using VsCode.
         # TLDR: Drag it outside the folder!
@@ -55,12 +61,20 @@ import random
 # Using this Repo and FlowChart
 
 """
-# COLORS
+# COLORS -- FOR TERMINAL
 GREEN = "\033[42m" # The letter's in the right placement
 YELLOW = "\033[43m" # The letter's in the word, not the right placement
 GRAY = "\033[47m" # The letter is not in the word
 RESET = "\033[0m" # This reset's the termianal background & text color back to colorless/default
 
+#COLORS -- FOR PYGAME
+# PYGAME COLORS
+PG_GREEN = (106, 170, 100)      # Tile - Green
+PG_YELLOW = (201, 180, 88)      # Tile - Yellow
+PG_GRAY = (120, 124, 126)       # Tile - GRAY
+PG_WHITE = (255, 255, 255)      # Background 
+PG_BLACK = (0, 0, 0)            # Text color within the tiles
+PG_LIGHT_GRAY = (211, 214, 218) # Empty tile border color
 
 class Letter:
     def __init__(self, char: str, color: str):
@@ -203,8 +217,67 @@ def play_game(wordlist: list[str], max_attempts: int = 5, word_length: int = 5) 
 
     print("Game over! Your word was:", secret)
 
+# BELOW IS PYGAME STUFF
+
+
+def get_tile_color(char: str, i: int, guess: str, secret: str) -> tuple:
+    """
+    This returns the PyGame color for a single letter tile using the Letter class.
+
+    Parameters:
+        char   (str): The single character being evaluated
+        i      (int): The position of the character in the guess
+        guess  (str): The full guessed word
+        secret (str): The secret target word
+
+    Returns:
+        tuple: A PyGame RGB color tuple
+    """
+    pass
+
+def draw_board(screen: Surface, guesses: list, secret: str, current_guess: str, row: int, font) -> None:
+    """
+    Thiis draws the 5x5 grid of tiles onto the PyGame screen.
+
+    Parameters:
+        screen        (Surface): The PyGame window surface
+        guesses       (list):    A list of completed guesses so far
+        secret        (str):     The secret target word
+        current_guess (str):     The word currently being typed
+        row           (int):     The current attempt row
+        font:                    The font used to render letters
+
+    Returns:
+        None
+    """
+    pass
+    
+def play_game_pygame(wordlist: list[str], max_attempts: int = 5, word_length: int = 5) -> None: # STANDALONE
+    """
+    Tis runs the Wordle game in a PyGame window.
+
+    Parameters:
+        wordlist     (list[str]): The list that contains the words to pick from
+        max_attempts (int):       The amount of guesses allowed, default is 5
+        word_length  (int):       The length of a word and or guess, default is 5
+
+    Returns:
+        None: The game runs in a PyGame window and ends when the player wins or runs out of guesses.
+    """
+    pass
 
 if __name__ == "__main__":
-    wordlist = load_wordlist("real_wordles.txt")
-    play_game(wordlist)
+    init() # Initializes PyGame
 
+    # Window settings
+    width: int = 600
+    height: int = 700
+    screen: Surface = set_mode((width, height)) # Creates the window
+    set_caption("Wordle")                        # Sets the window title
+
+    font = SysFont("Arial", 36, bold=True)         # Font for tiles
+    message_font = SysFont("Arial", 28, bold=True) # Font for messages
+
+    clock: Clock = Clock() # Controls the frame rate
+
+    wordlist = load_wordlist("real_wordles.txt")
