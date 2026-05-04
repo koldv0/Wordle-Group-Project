@@ -303,7 +303,63 @@ def play_game_pygame(wordlist: list[str], max_attempts: int = 5, word_length: in
     Returns:
         None: The game runs in a PyGame window and ends when the player wins or runs out of guesses.
     """
-    pass
+    secret = random.choice(wordlist)  # Picks a random secret word
+    guesses = []                      # Stores completed guesses
+    current_guess = ""                # Word currently being typed
+    row = 0                           # Current row
+    game_over = False                 # Tracks if the game ended
+    message = ""                      # Message to display on screen
+
+    running = True
+    while running:
+        for event in get():           # Goes through all PyGame events
+            if event.type == QUIT:
+                running = False
+
+            elif event.type == KEYDOWN:
+                if event.key == K_BACKSPACE:
+                    current_guess = current_guess[:-1]  # Removes last letter
+
+                elif event.key == K_RETURN:
+                    if len(current_guess) == word_length:
+                        guesses.append(current_guess)   # Locks in the guess
+
+                        if current_guess == secret:
+                            message = "You got it!"
+                            game_over = True
+                        elif row + 1 >= max_attempts:
+                            message = f"Bummer! The word is: {secret.upper()}"
+                            game_over = True
+                        else:
+                            row += 1
+
+                        current_guess = ""  # Clears the current guess
+                    else:
+                        message = f"It must be {word_length} letters!"  # Shows error if too short
+
+                elif event.unicode.isalpha() and len(current_guess) < word_length:
+                    current_guess += event.unicode.lower()  # Adds typed letter
+                    message = ""                             # Clears any old message
+
+        screen.fill(PG_GRAY)                                         # Clears the screen
+        draw_board(screen, guesses, secret, current_guess, row, font) # Draws the board
+
+        if message:                                                    # Displays message if there is one
+            msg_surface = message_font.render(message, True, PG_BLACK)
+            msg_rect = msg_surface.get_rect(center=(width // 2, height - 40))
+            screen.blit(msg_surface, msg_rect)
+
+        flip()         # Updates the display
+        clock.tick(30) # Caps at 30 FPS
+
+        if game_over:
+            while True:                  # Keeps the window open
+                for event in get():
+                    if event.type == QUIT:
+                        quit()           # Only closes when user exits
+                        return
+
+    quit()  # Closes PyGame
 
 if __name__ == "__main__":
     init() # Initializes PyGame
