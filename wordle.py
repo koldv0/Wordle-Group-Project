@@ -196,26 +196,20 @@ def play_game(wordlist: list[str], max_attempts: int = 5, word_length: int = 5) 
     secret:str = random.choice(wordlist)
     attempts:int = max_attempts
 
-    print("LET'S PLAY WORDLE!")
-    print(f"Your purpose is to guess {word_length}-letter word. You have up to 5 tries before you lose. \n")
-
     try:
         while attempts > 0:
             guess = get_guess(word_length)
             print(color_guess(guess, secret))
 
             if guess == secret:
-                print("You guessed correctly, you win!")
                 return
 
             attempts -= 1
-            print("Tries left:", attempts)
 
     except KeyboardInterrupt:
-        print(f"\nGame quit early. The word was: {secret}")
         exit(0)
 
-    print("Game over! Your word was:", secret)
+
 
 
 # ~ BELOW IS PYGAME STUFF ~ 
@@ -341,7 +335,7 @@ def play_game_pygame(wordlist: list[str], max_attempts: int = 5, word_length: in
                     current_guess += event.unicode.lower()  # Adds typed letter
                     message = ""                             # Clears any old message
 
-        screen.fill(PG_GRAY)                                         # Clears the screen
+        screen.fill(PG_WHITE)                                         # Clears the screen
         draw_board(screen, guesses, secret, current_guess, row, font) # Draws the board
 
         if message:                                                    # Displays message if there is one
